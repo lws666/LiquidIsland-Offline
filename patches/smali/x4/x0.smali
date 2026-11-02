@@ -90,7 +90,7 @@
     move-result-object v1
     iget v2, v1, Landroid/util/DisplayMetrics;->widthPixels:I
     iget v1, v1, Landroid/util/DisplayMetrics;->density:F
-    const/high16 v3, 0x42c00000    # 96.0f
+    const/high16 v3, 0x43480000    # 96.0f
     mul-float/2addr v1, v3
     float-to-int v1, v1
     iget-object v3, p0, Lx4/x0;->c:Landroid/graphics/Rect;
