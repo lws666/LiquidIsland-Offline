@@ -65,6 +65,8 @@
     invoke-static {v6, v7}, Lkotlin/jvm/internal/l;->a(Ljava/lang/Object;Ljava/lang/Object;)Z
     move-result v6
     if-eqz v6, :cond_next
+    const/4 v6, 0x1
+    invoke-virtual {v5, v6}, Ljava/lang/reflect/AccessibleObject;->setAccessible(Z)V
     const/4 v2, 0x3
     invoke-static {v2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
     move-result-object v2
@@ -76,19 +78,37 @@
     add-int/lit8 v4, v4, 0x1
     goto :goto_find
     iget-object v1, p0, Lx4/p;->a:Lcom/example/liquidisland/services/DynamicIslandService;
+    iget-object v1, v1, Lcom/example/liquidisland/services/DynamicIslandService;->N:Ljava/util/List;
+    invoke-interface {v1}, Ljava/util/List;->isEmpty()Z
+    move-result v2
+    if-eqz v2, :cond_bounds
+    iget-object v1, p0, Lx4/p;->a:Lcom/example/liquidisland/services/DynamicIslandService;
     invoke-virtual {v1}, Lcom/example/liquidisland/services/DynamicIslandService;->getResources()Landroid/content/res/Resources;
     move-result-object v1
     invoke-virtual {v1}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
     move-result-object v1
     iget v2, v1, Landroid/util/DisplayMetrics;->widthPixels:I
     iget v1, v1, Landroid/util/DisplayMetrics;->density:F
-    const/high16 v3, 0x43480000    # 96.0f
+    const/high16 v3, 0x43480000    # 200.0f
     mul-float/2addr v1, v3
     float-to-int v1, v1
     new-instance v3, Landroid/graphics/Rect;
     const/4 v4, 0x0
     invoke-direct {v3, v4, v4, v2, v1}, Landroid/graphics/Rect;-><init>(IIII)V
     invoke-virtual {v0, v3}, Landroid/graphics/Region;->union(Landroid/graphics/Rect;)Z
+    goto :cond_done
+    :cond_bounds
+    invoke-interface {v1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+    move-result-object v1
+    :goto_iter
+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+    move-result v2
+    if-eqz v2, :cond_done
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    move-result-object v2
+    check-cast v2, Landroid/graphics/Rect;
+    invoke-virtual {v0, v2}, Landroid/graphics/Region;->union(Landroid/graphics/Rect;)Z
+    goto :goto_iter
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
@@ -100,4 +120,5 @@
     const/4 v0, 0x0
     return-object v0
 .end method
+
 
