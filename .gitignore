@@ -1,0 +1,12 @@
+build/
+tools/
+*.keystore
+*.jks
+*.apk
+*.apks
+*.aab
+*.dex
+*.zip
+*.log
+__pycache__/
+.DS_Store

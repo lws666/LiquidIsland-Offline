@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="36" android:compileSdkVersionCodename="16" package="com.example.liquidisland" platformBuildVersionCode="36" platformBuildVersionName="16">
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS"/>
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
+    <uses-permission android:name="moe.shizuku.manager.permission.API_V23"/>
+    <queries>
+        <intent>
+            <action android:name="android.service.quicksettings.action.QS_TILE"/>
+        </intent>
+        <package android:name="com.example.liquidclock"/>
+        <package android:name="com.liquidclock"/>
+        <package android:name="com.liquidisland.clock"/>
+        <package android:name="com.b0rzy.liquidclock"/>
+        <package android:name="com.example.liquiddictaphone"/>
+        <package android:name="com.liquiddictaphone"/>
+        <package android:name="com.example.liquidsoundrecorder"/>
+        <package android:name="com.liquidisland.recorder"/>
+        <package android:name="com.example.liquiddialer"/>
+        <package android:name="com.liquiddialer"/>
+        <package android:name="com.liquidisland.dialer"/>
+        <package android:name="com.example.liquidsiri"/>
+        <package android:name="com.liquidsiri"/>
+        <package android:name="com.google.android.deskclock"/>
+        <package android:name="com.sec.android.app.clockpackage"/>
+        <package android:name="com.android.deskclock"/>
+        <intent>
+            <action android:name="android.intent.action.MAIN"/>
+        </intent>
+        <intent>
+            <action android:name="android.provider.AlarmClock.ACTION_SHOW_TIMERS"/>
+        </intent>
+        <intent>
+            <action android:name="android.provider.AlarmClock.ACTION_SHOW_ALARMS"/>
+        </intent>
+        <intent>
+            <action android:name="android.provider.AlarmClock.ACTION_SET_TIMER"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.DIAL"/>
+        </intent>
+        <intent>
+            <action android:name="android.provider.MediaStore.Audio.Media.RECORD_SOUND_ACTION"/>
+        </intent>
+        <intent>
+            <action android:name="android.media.browse.MediaBrowserService"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MEDIA_BUTTON"/>
+        </intent>
+        <intent>
+            <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
+        </intent>
+    </queries>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE"/>
+    <permission android:name="com.example.liquidisland.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" android:protectionLevel="signature"/>
+    <uses-permission android:name="com.example.liquidisland.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"/>
+    <application android:allowBackup="false" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:dataExtractionRules="@xml/data_extraction_rules" android:enableOnBackInvokedCallback="true" android:extractNativeLibs="false" android:fullBackupContent="@xml/backup_rules" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:largeHeap="true" android:name="com.example.liquidisland.LiquidIslandApplication" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/Theme.LiquidIsland">
+        <activity android:exported="true" android:label="@string/app_name" android:launchMode="singleTask" android:name="com.example.liquidisland.MainActivity" android:theme="@style/Theme.LiquidIsland">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="activate" android:scheme="liquidisland"/>
+            </intent-filter>
+        </activity>
+        <service android:exported="false" android:foregroundServiceType="specialUse" android:name="com.example.liquidisland.services.DynamicIslandService">
+            <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="systemAlertWindow"/>
+        </service>
+        <service android:exported="false" android:foregroundServiceType="specialUse" android:name="com.example.liquidisland.adb.AdbPairingNotificationService">
+            <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="adbPairing"/>
+        </service>
+        <service android:exported="true" android:label="Liquid Island (Global Overlay)" android:name="com.example.liquidisland.services.DynamicIslandAccessibilityService" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
+            </intent-filter>
+            <meta-data android:name="android.view.accessibilityservice" android:resource="@xml/accessibility_service_config"/>
+        </service>
+        <activity android:excludeFromRecents="true" android:exported="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:launchMode="singleInstance" android:name="com.example.liquidisland.assistant.SiriAssistActivity" android:noHistory="true" android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.ASSIST"/>
+                <action android:name="android.intent.action.VOICE_COMMAND"/>
+                <action android:name="android.intent.action.SEARCH_LONG_PRESS"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <service android:exported="true" android:label="@string/app_name" android:name="com.example.liquidisland.services.NotificationListener" android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.example.liquidisland.services.LiquidCallScreeningService" android:permission="android.permission.BIND_SCREENING_SERVICE">
+            <intent-filter>
+                <action android:name="android.telecom.CallScreeningService"/>
+            </intent-filter>
+        </service>
+        <service android:exported="false" android:foregroundServiceType="mediaProjection" android:name="com.example.liquidisland.recorder.LiquidScreenRecorderService"/>
+        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.example.liquidisland.recorder.ScreenCapturePermissionActivity" android:noHistory="true" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <service android:exported="true" android:icon="@drawable/ic_qs_screen_record_inactive" android:label="@string/qs_screen_record_tile_label" android:name="com.example.liquidisland.recorder.LiquidScreenRecordTileService" android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
+        <receiver android:exported="true" android:name="com.example.liquidisland.api.IslandApiReceiver">
+            <intent-filter>
+                <action android:name="com.liquidisland.api.UPDATE_CLOCK_UI_STATE"/>
+                <action android:name="com.liquidisland.api.UPDATE_TIMER"/>
+                <action android:name="com.liquidisland.api.UPDATE_STOPWATCH"/>
+                <action android:name="com.liquidisland.api.UPDATE_RECORDER"/>
+                <action android:name="com.liquidisland.api.UPDATE_VOICE_RECORDER"/>
+                <action android:name="com.liquidisland.api.UPDATE_SCREEN_RECORDER"/>
+                <action android:name="com.liquidisland.api.UPDATE_CALL"/>
+                <action android:name="com.liquidisland.api.UPDATE_CALL_AUDIO"/>
+                <action android:name="com.liquidisland.api.UPDATE_GEMINI"/>
+                <action android:name="com.example.liquidisland.GEMINI_UPDATE"/>
+                <action android:name="com.liquidisland.api.SET_LENS"/>
+                <action android:name="com.liquidisland.api.OPEN_SHADE"/>
+                <action android:name="com.liquidisland.api.CLOSE_SHADE"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="true" android:enabled="true" android:exported="true" android:name="com.example.liquidisland.adb.ShizukuBootReceiver">
+            <intent-filter android:priority="999">
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.USER_UNLOCKED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+            </intent-filter>
+        </receiver>
+        <provider android:authorities="com.example.liquidisland.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="androidx.core.content.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"/>
+        </provider>
+        <provider android:authorities="com.example.liquidisland.shizuku" android:enabled="true" android:exported="true" android:multiprocess="false" android:name="rikka.shizuku.ShizukuProvider" android:permission="android.permission.INTERACT_ACROSS_USERS_FULL"/>
+        <receiver android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementReceiver"/>
+        <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementService"/>
+        <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <property android:name="android.adservices.AD_SERVICES_CONFIG" android:resource="@xml/ga_ad_services_config"/>
+        <service android:directBootAware="true" android:exported="false" android:name="com.google.firebase.components.ComponentDiscoveryService">
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.crashlytics.FirebaseCrashlyticsKtxRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.sessions.FirebaseSessionsRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+        </service>
+        <service android:enabled="true" android:exported="false" android:name="com.google.firebase.sessions.SessionLifecycleService"/>
+        <provider android:authorities="com.example.liquidisland.firebaseinitprovider" android:directBootAware="true" android:exported="false" android:initOrder="100" android:name="com.google.firebase.provider.FirebaseInitProvider"/>
+        <provider android:authorities="com.example.liquidisland.androidx-startup" android:exported="false" android:name="androidx.startup.InitializationProvider">
+            <meta-data android:name="androidx.emoji2.text.EmojiCompatInitializer" android:value="androidx.startup"/>
+            <meta-data android:name="androidx.lifecycle.ProcessLifecycleInitializer" android:value="androidx.startup"/>
+            <meta-data android:name="androidx.profileinstaller.ProfileInstallerInitializer" android:value="androidx.startup"/>
+        </provider>
+        <uses-library android:name="android.ext.adservices" android:required="false"/>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <meta-data android:name="firebase_analytics_collection_enabled" android:value="false"/>
+        <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="false"/>
+        <meta-data android:name="google_analytics_adid_collection_enabled" android:value="false"/>
+        <meta-data android:name="moe.shizuku.client.V3_SUPPORT" android:value="true"/>
+        <receiver android:directBootAware="false" android:enabled="true" android:exported="true" android:name="androidx.profileinstaller.ProfileInstallReceiver" android:permission="android.permission.DUMP">
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.SKIP_FILE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="false" android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery">
+            <meta-data android:name="backend:com.google.android.datatransport.cct.CctBackendFactory" android:value="cct"/>
+        </service>
+        <service android:exported="false" android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <receiver android:exported="false" android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"/>
+    </application>
+</manifest>
